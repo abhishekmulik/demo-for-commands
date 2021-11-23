@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react'
+import SignUp from "./auth/signUp"
+import "./App.css"
+import LandingPage from "./components/landingPage";
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import AllEvents from "./components/AllEvents";
+import AddEvent from "./components/AddEvent";
+import HeaderNavbar from "./components/Navbar";
+import Login from './auth/login';
+
+import PrivateRoute from './components/routing/PrivateRoute';
 
 function App() {
+  const [userAuth,setUserAuth]=useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+    <HeaderNavbar/>
+    <Switch>
+            <Route exact path='/' component={AllEvents}></Route>
+            <Route exact path='/addEvent' component={Login}></Route>
+    </Switch>
+    </Router>
+  )
 }
 
 export default App;
